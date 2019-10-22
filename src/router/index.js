@@ -4,8 +4,8 @@ import {Provider} from 'react-redux';
 import {hot} from 'react-hot-loader';
 import Store from '../redux';
 import DevTools from '../redux/DevTools';
-import App from '../components/app';
-import Docs from '../components/docs';
+
+import routes from './config'
 
 const Router = ({component: Component, children, ...rest}) => (
     <Route
@@ -14,7 +14,19 @@ const Router = ({component: Component, children, ...rest}) => (
             <Component {...props} ><Switch>{children}</Switch></Component>
         )}
     />
-);
+)
+
+function creatRouter(r) {
+  return r.map((route, key) => {
+    if (route.children) {
+      return (
+        <Router key={key} path={route.path} component={route.component}>{creatRouter(route.children)}</Router>
+      )
+    } else {
+      return (<Router exact key={key} path={route.path} component={route.component}/>)
+    }
+  })
+}
 
 const Root = () => (
     <BrowserRouter>
@@ -23,9 +35,7 @@ const Root = () => (
                 {/*{__DEVELOPMENT__ && <DevTools />}*/}
                 <DevTools />
                 <Switch>
-                    <Router path="/" component={App} >
-                        <Router exact path="/docs" component={Docs} />
-                    </Router>
+                  {creatRouter(routes)}
                 </Switch>
             </div>
         </Provider>

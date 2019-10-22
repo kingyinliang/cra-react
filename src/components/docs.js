@@ -15,9 +15,18 @@ class Docs extends Component {
     const {initalLogo} = this.props;
     initalLogo();
   }
+  handleBrowserChange = () => {
+    const {history, changeRoute} = this.props;
+    changeRoute();
+    history.push('/docs/docs1');
+  }
   render() {
     return (
-      <Documentation />
+      <div>
+        <Documentation />
+        <div onClick={this.handleBrowserChange}>go3</div>
+        <div>{this.props.children}</div>
+      </div>
     );
   }
 }
