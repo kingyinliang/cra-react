@@ -1,24 +1,30 @@
-import App from '../components/app';
-import Docs from '../components/docs';
-import Three from '../components/three';
+import Loadable from './loadable';
 
 const routes = [
   {
     path: '/',
-    component: App,
+    component: Loadable(()=>import('../components/app')),
     exact:true,
+  },
+  {
+    path: '/app',
+    component: Loadable(()=>import('../components/app')),
     children: [
       {
-        path: '/docs',
-        component: Docs,
+        path: '/app/docs',
+        component: Loadable(()=>import('../components/docs')),
         children: [
           {
-            path: '/docs/docs1',
-            component: Three,
+            path: '/app/docs/docs1',
+            component: Loadable(()=>import('../components/three')),
           }
         ]
       }
     ]
+  },
+  {
+    path: '/test',
+    component: Loadable(()=>import('../components/test')),
   }
 ]
 

@@ -20,10 +20,10 @@ function creatRouter(r) {
   return r.map((route, key) => {
     if (route.children) {
       return (
-        <Router key={key} path={route.path} component={route.component}>{creatRouter(route.children)}</Router>
+        <Router exact={route.exact} key={key} path={route.path} component={route.component}>{creatRouter(route.children)}</Router>
       )
     } else {
-      return (<Router exact key={key} path={route.path} component={route.component}/>)
+      return (<Router exact={route.exact} exact key={key} path={route.path} component={route.component}/>)
     }
   })
 }

@@ -18,7 +18,7 @@ class Docs extends Component {
   handleBrowserChange = () => {
     const {history, changeRoute} = this.props;
     changeRoute();
-    history.push('/docs/docs1');
+    history.push('/app/docs/docs1');
   }
   render() {
     return (

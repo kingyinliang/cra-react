@@ -18,7 +18,12 @@ class App extends Component {
   handleBrowserChange = () => {
     const {history, changeRoute} = this.props;
     changeRoute();
-    history.push('/docs');
+    history.push('/app/docs');
+  }
+  gotest = () => {
+    const {history, changeRoute} = this.props;
+    changeRoute();
+    history.push('/test');
   }
   render() {
     const {home: {movelogo}} = this.props;
@@ -30,6 +35,7 @@ class App extends Component {
           </div>
           <h1>React Project</h1>
         </div>
+        <div><button onClick={this.gotest}>test</button></div>
         <div style={{width: '1000px', margin: '0 auto'}}>
           {this.props.children}
         </div>
