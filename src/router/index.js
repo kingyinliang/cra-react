@@ -23,7 +23,7 @@ function creatRouter(r) {
         <Router exact={route.exact} key={key} path={route.path} component={route.component}>{creatRouter(route.children)}</Router>
       )
     } else {
-      return (<Router exact={route.exact} exact key={key} path={route.path} component={route.component}/>)
+      return (<Router exact={route.exact} key={key} path={route.path} component={route.component}/>)
     }
   })
 }
